@@ -20,18 +20,16 @@ func main() {
 
 	for {
 
-		greetuser(conferenceName, conferenceTickets)
+		usergreeting()
 
 		registerUser(firstName, lastName, email, TicketsByUser)
 
-        if remainingTickets == 0 {
+		if remainingTickets == 0 {
 			fmt.Println("No more tickets available. The conference is sold out.")
 			break
 		}
 
-        validateUserData(firstName, lastName, email, TicketsByUser)
-
-
+		validateUserData(ifFirstName, ifLastName, ifEmail, ifTicketsCond)
 
 		remainingTickets = remainingTickets - TicketsByUser
 
@@ -54,34 +52,33 @@ func main() {
 		fmt.Printf("remaining tickets after is %v\n", remainingTickets)
 	}
 
-  func greetUser(conferenceName string, conferenceTickets uint)(string, uint)	{
+}
 
-	   fmt.Printf("welcome to our %v and total tickets in conference is %v \n", conferenceName, conferenceTickets)
+func usergreeting() {
 
-	   return conferenceName, conferenceTickets
+	fmt.Printf("welcome to our %v and total tickets in conference is %v \n", conferenceName, conferenceTickets)
 
-      }
+}
 
-  func registerUser(firstName string, lastName string, email string, TicketsByUser uint) (string, string, string, uint) {
+func registerUser(firstName string, lastName string, email string, TicketsByUser uint) (string, string, string, uint) {
 
-        fmt.Println("Please enter your first name:")
-		fmt.Scanln(&firstName)
+	fmt.Println("Please enter your first name:")
+	fmt.Scanln(&firstName)
 
-		fmt.Println("Please enter your last name:")
-		fmt.Scanln(&lastName)
+	fmt.Println("Please enter your last name:")
+	fmt.Scanln(&lastName)
 
-		fmt.Println("Please enter your email:")
-		fmt.Scanln(&email)
+	fmt.Println("Please enter your email:")
+	fmt.Scanln(&email)
 
-		fmt.Println("Please enter no of tickets:")
-		fmt.Scanln(&TicketsByUser)
+	fmt.Println("Please enter no of tickets:")
+	fmt.Scanln(&TicketsByUser)
 
+	return firstName, lastName, email, TicketsByUser
 
-		return firstName, lastName, email, TicketsByUser
+}
 
-  }
-
-  func validateUserData(firstName string, lastName string, email string, TicketsByUser uint) (bool, bool, bool, bool) {
+func validateUserData(firstName string, lastName string, email string, TicketsByUser uint) (bool, bool, bool, bool) {
 	ifFirstName := len(firstName) > 2
 	ifLastName := len(lastName) > 2
 	ifEmail := strings.Contains(email, "@")
@@ -93,13 +90,6 @@ func main() {
 	fmt.Println(ifEmail)
 	fmt.Println(ifTicketsCond)
 
- return ifFirstName, ifLastName, ifEmail, ifTicketsCond
-
-
-}
-
-
-
-
+	return ifFirstName, ifLastName, ifEmail, ifTicketsCond
 
 }
